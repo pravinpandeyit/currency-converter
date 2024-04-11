@@ -1,0 +1,40 @@
+body {
+  background-image: url("https://images.pexels.com/photos/4386370/pexels-photo-4386370.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"); /* Placeholder stock image */
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  background-color: rgba(
+    255,
+    255,
+    255
+  ); /* Background color with transparency */
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); /* Shadow effect */
+  margin-top: 50px; /* Adjust margin-top to create space between background image and form */
+}
+
+.btn-convert {
+  width: 100%;
+  max-width: 200px; /* Limiting maximum width */
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  background-color: orange; /* Orange color */
+  color: #fff; /* White text */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Shadow effect */
+  transition: all 0.3s ease;
+}
+
+.btn-convert:hover {
+  background-color: #e67e22; /* Darker orange on hover */
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2); /* Increased shadow on hover */
+}
