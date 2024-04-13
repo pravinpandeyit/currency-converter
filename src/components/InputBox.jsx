@@ -5,6 +5,12 @@ export default function InputBox({
   readOnly,
   customID,
 }) {
+  const handleChange = (e) => {
+    const inputValue = e.target.value;
+    if (/^\d*\.?\d*$/.test(inputValue)) {
+      setValue(inputValue);
+    }
+  };
   return (
     <div className="col-md-6">
       <div className="form-group">
@@ -14,9 +20,8 @@ export default function InputBox({
           className="form-control"
           id={customID}
           placeholder="Enter amount"
-          required
           value={value}
-          onChange={(e) => setValue(e.target.value)}
+          onChange={handleChange}
           readOnly={readOnly}
         />
       </div>

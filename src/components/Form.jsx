@@ -9,20 +9,29 @@ export default function Form() {
   const [from, setFrom] = useState("usd");
   const [to, setTo] = useState("inr");
   const [perUnitConversionAmount, setPerUnitConversionAmount] = useState(0);
+  const [fetched, setFetched] = useState(false);
 
   async function fetchCurrency(currency = "usd") {
-    const res = await fetch(
-      `https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/${currency}.json`
-    );
-    const data = await res.json();
-    setAllCurrency(Object.keys(data[currency]));
-    setPerUnitConversionAmount(data[currency][to]);
-    // console.log("first function", data[currency][to]);
+    try {
+      const res = await fetch(
+        `https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/${currency}.json`
+      );
+      const data = await res.json();
+      setAllCurrency(Object.keys(data[currency]));
+      setPerUnitConversionAmount(data[currency][to]);
+      setFetched(true);
+      // console.log("first function", data[currency][to]);
+    } catch (error) {
+      console.error("Error fetching currency:", error);
+      setFetched(false);
+    }
   }
 
   const convertCurrency = () => {
-    // console.log("second function", perUnitConversionAmount);
-    return setConvertedAmount(amount * perUnitConversionAmount);
+    if (fetched) {
+      // console.log("second function", perUnitConversionAmount);
+      return setConvertedAmount((amount * perUnitConversionAmount).toFixed(2));
+    }
   };
 
   const handleSwap = () => {
@@ -63,12 +72,14 @@ export default function Form() {
           setValue={setFrom}
           allCurrency={allCurrency}
           customID="fromCurrency"
+          text="From Currency"
         />
         <Dropdown
           value={to}
           setValue={setTo}
           allCurrency={allCurrency}
           customID="toCurrency"
+          text="To Currency"
         />
       </div>
       <div className="text-center">

@@ -1,8 +1,14 @@
-export default function Dropdown({ value, setValue, allCurrency, customID }) {
+export default function Dropdown({
+  value,
+  setValue,
+  allCurrency,
+  customID,
+  text,
+}) {
   return (
     <div className="col-md-6">
       <div className="form-group">
-        <label htmlFor={customID}>From Currency:</label>
+        <label htmlFor={customID}>{text}:</label>
         <select
           className="form-control"
           id={customID}
